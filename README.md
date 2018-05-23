@@ -17,7 +17,7 @@ In order to integrate the project with your site you need to do the following
 These two will be invoked and shown in a dialog if the user is not logged in and for example tries to place a bet.
 
 Note. in order to reload the integration iframe from the latter pages make use of the following line of code:
-	window.parent.postMessage("BOA_REDIRECT", "");
+	*window.parent.postMessage("BOA_REDIRECT", "");*
 
 4. Finally, create two a subdomain to your own website, for example integration.example.com and point it to the ip we provide you with. Use this url in the iframe of the integration.
 
