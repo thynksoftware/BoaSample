@@ -1,4 +1,4 @@
-Running the project
+## Running the project
 In order to run the project you need to execute the following commands after executing "Sql Scripts.sql" to restore the database.
 
 npm install
@@ -6,7 +6,7 @@ npm run build-css
 dotnet restore
 dontet run
 
-Integrating the project with your site
+## Integrating the project with your site
 In order to integrate the project with your site you need to do the following
 
 1. Make a copy of BoaController.cs and modify the snippets in each of the methods to your own.
