@@ -4,7 +4,7 @@ In order to run the project you need to execute the following commands after exe
 - npm install
 - npm run build-css
 - dotnet restore
-- dontet run
+- dotnet run
 
 ## Integrating the project with your site
 In order to integrate the project with your site you need to do the following
