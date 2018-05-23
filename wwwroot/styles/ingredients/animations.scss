@@ -1,0 +1,212 @@
+
+//Animations
+.animation-fadein { animation: keyframe-fadein 0.2s ease-in; }
+.animation-slide-top { animation: keyframe-slide-top 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-slide-bottom { animation: keyframe-slide-bottom 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-slide-left { animation: keyframe-slide-left 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-slide-right { animation: keyframe-slide-right 0.2s ease, keyframe-fadein 0.2s ease; }
+
+.animation-page-fadein { animation: keyframe-fadein 0.2s ease-in; }
+.animation-page-zoomin { animation: keyframe-zoomin 0.2s ease-in; }
+.animation-page-slide-bottom { animation: keyframe-slide-bottom 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-page-slide-top { animation: keyframe-slide-top 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-page-slide-left { animation: keyframe-slide-left 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-page-slide-right { animation: keyframe-slide-right 0.2s ease, keyframe-fadein 0.2s ease; }
+.animation-zoomin-top-right { animation: keyframe-zoomin 0.2s ease, keyframe-fadein 0.2s ease; transform-origin: top right; }
+.animation-zoomin-top-center { animation: keyframe-zoomin 0.2s ease, keyframe-fadein 0.2s ease; transform-origin: top center; }
+
+.animation-zoomin-top-right { animation: keyframe-zoomin 0.2s ease, keyframe-fadein 0.2s ease; transform-origin: top right; }
+.animation-zoomin-top-center { animation: keyframe-zoomin 0.2s ease, keyframe-fadein 0.2s ease; transform-origin: top center; }
+
+.fade-animation {
+    &.au-enter-active { animation: keyframe-fadein 0.5s ease-in-out; animation-fill-mode: forwards; }
+    &.au-leave-active { animation: keyframe-fadeout 0.5s ease-in-out; animation-fill-mode: forwards; }
+}
+
+//--Keyframes
+
+//Fade In
+@keyframes keyframe-fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+//Fade Out
+@keyframes keyframe-fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+//Zoom In
+@keyframes keyframe-zoomin {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+//Zoom Out
+@keyframes keyframe-zoomout {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.7); opacity: 0; }
+}
+
+//Slide Top
+@keyframes keyframe-slide-top {
+    0% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
+
+//Slide Left
+@keyframes keyframe-slide-left {
+    0% { transform: translateX(-30px); }
+    100% { transform: translateX(0); }
+}
+
+//Slide Right
+@keyframes keyframe-slide-right {
+    0% { transform: translateX(30px); }
+    100% { transform: translateX(0); }
+}
+
+//Slide Bottom
+@keyframes keyframe-slide-bottom {
+    0% { transform: translateY(30px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes keyframe-slide {
+    0% { transform: translateX(500px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.7); opacity: 0.0; }
+    25% { transform: scale(0.9); opacity: 0.2; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+    75% { transform: scale(1.3); opacity: 0.9; }
+    100% { transform: scale(1.35); opacity: 0.0; }
+}
+
+@keyframes moves {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(-5px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes move-vertical {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(3px); }
+    50% { transform: translateY(5px); }
+    75% { transform: translateY(3px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes show {
+    from { opacity: 1; visibility: visible; }
+    to { opacity: 1; visibility: visible; }
+}
+
+// slide in - to left
+@-webkit-keyframes slide-in-left {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@keyframes slide-in-left {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+// slide in - to right
+@-webkit-keyframes slide-in-right {
+    from { -webkit-transform: translateX(-100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+// slide in - to top
+@-webkit-keyframes slide-in-top {
+    from { -webkit-transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@keyframes slide-in-top {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+// slide out - to top
+@-webkit-keyframes slide-out-top {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(-100%); }
+}
+
+@keyframes slide-out-top {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+}
+
+// slide out - to left
+@-webkit-keyframes slide-out-left {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes slide-out-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+// slide out - to right
+@-webkit-keyframes slide-out-right {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(100%); }
+}
+
+@keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+// slide out - to bottom
+@-webkit-keyframes slide-out-bottom {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(100%); }
+}
+
+@keyframes slide-out-bottom {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+// slide in - to bottom
+@-webkit-keyframes slide-in-bottom {
+    from { -webkit-transform: translateY(100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@keyframes slide-in-bottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+//Animation Delay Iteration
+@mixin animation-delay($delay, $times) {
+    @for $i from 1 through $times {
+        &:nth-child(#{$i}) { animation-delay: #{$i * $delay}s; }
+    }
+}
+
+//Transforms
+@mixin transform-scale($x: 0.9, $y: 0.9){ transform: scale($x, $y); }
+@mixin transform-translate($x: 50px, $y: 50px){ transform: translate($x, $y); }
+@mixin transform-rotate($deg){ transform: rotate($deg); }
+
+//Transitions
+@mixin transition($prop: all, $duration: 0.3s, $func: linear) { transition: $prop $duration $func; }
+@mixin animation($keyframe, $duration: 0.2s, $func: linear) { animation: $keyframe $duration $func; }

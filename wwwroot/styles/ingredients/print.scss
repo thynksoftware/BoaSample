@@ -1,0 +1,6 @@
+
+//Print
+@media print { size: A4 portrait; -webkit-print-color-adjust: exact;
+    body { margin: 0; padding: 0; }
+    @page { margin: 0; padding: 0; }
+}

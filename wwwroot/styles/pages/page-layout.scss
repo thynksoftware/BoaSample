@@ -1,0 +1,117 @@
+
+//Layout Page
+.page-layout { position: relative;
+
+    //Header
+    .header { position: fixed; top: 0; right: 0; left: 0; z-index: $z-index-header; background-color: $color-secondary;
+        .header-wrap { height: 50px; padding: 0 10px; flex-wrap: nowrap; @include transition();
+            @include media-xs { height: 60px; }
+        
+            //Boa Logo
+            .logo-anchor { margin-right: auto;
+            }
+
+
+            //Navigation
+            .navigation { display: none; user-select: none;
+                @include media-md { display: block; margin-left: auto; }
+                .nav-item { position: relative; display: inline; padding: 4px 10px; font-size: 1.2rem; border-radius: 3px; text-decoration: none; color: $color-white;
+                    @include transition(); user-select: none;
+                    &.drop { display: none; }
+
+                    //Logout
+                    &.logout { -webkit-appearance: none; background: none; border: none; }
+                    
+                    @include media-custom(950px) { padding: 8px 16px; font-size: 1.4rem; cursor: pointer;
+                        &:hover { background-color: darken($color-primary, 15%); }
+                    }
+                    @include media-md {
+                        &.mob { display: none; }
+                        &.drop { display: inline-block; }
+                        .dropdown { display: none; position: absolute; top: 36px; left: 0; width: 150px; padding: 7px 0; background-color: $color-white;
+                            border-radius: 2px; box-shadow: 1px 1px 3px rgba($color-black, 0.4);
+                            .item { padding: 7px 15px; white-space: nowrap;
+                                &:hover { background-color: $color-primary; color: $color-white; }
+                            }
+                        }
+                        &.drop { position: relative;
+                            &:after { content: "keyboard_arrow_down"; @include font-MaterialIcons(); position: absolute; top: 10px; right: 2px;  }
+                            &:hover {
+                                .dropdown { display: flex; }
+                            }
+                        }
+                    }
+                    @include media-lg { font-size: 1.6rem; }
+
+                    //Active
+                    &:active { @include transform-scale(); background-color: darken($color-primary, 20%); }
+                }
+
+                //Mobile View
+                &.js-active { display: flex; position: fixed; top: 0; right: 0; left: 0; bottom: 0; width: 100vw; height: 100vh; background: $color-secondary; 
+                    flex-direction: column; justify-content: center; align-items: center;
+                    .nav-item { position: relative; min-width: 270px; padding: 10px; font-size: 2.2rem; color: $color-white; text-align: center; @include transition();
+                        &:not(:last-of-type) { margin-bottom: 8px; }
+                        
+                        //Active
+                        &:active { @include transform-scale(); background-color: transparent; }
+                    }    
+                }
+            }
+
+            //Humberger Nav
+            .mobile-nav { position: relative; width: 40px; height: 40px; z-index: 10;
+                @include media-md { display: none; }
+                .hamburger { display: block; position: absolute; top: 19px; left: 5px; width: 30px; height: 2px; background: $color-white; content: ''; @include transition(all,0.2s,ease);
+                    &:before { display: block; position: absolute; top: -10px; width: 30px; height: 2px; background: $color-white; content: ''; @include transition(all,0.2s,ease); }
+                    &:after { display: block; position: absolute; bottom: -10px; width: 30px; height: 2px; background: $color-white; content: ''; @include transition(all,0.2s,ease); }
+                }
+
+                //Opened
+                &.js-active {
+                    .hamburger { background-color: transparent;
+                        &:before { top: 0; @include transform-rotate(45deg); background-color: $color-white; }
+                        &:after { top: 0; @include transform-rotate(-45deg); background-color: $color-white; }
+                    }
+                }
+            }
+        }
+    }
+
+    //Main
+    main { position: fixed; height: 100%; width: 100%; padding: 50px 0 0;
+        @include media-xs { padding-top: 60px; }
+        // @include media-md { padding-bottom: 50px; }
+        .page-section { position: relative; flex-shrink: 0;
+            // Section wrapper
+            .section-wrapper { position: relative; width: 100%; height: 100%; max-width: 1200px; margin: 0 auto; padding: 50px 20px; flex-grow: 1;
+                @include media-sm { padding: 40px 10px; }
+                @include media-md { padding: 60px 10px; }
+                @include media-lg { padding: 120px 10px; }
+            }
+            // Section title
+            .section-title { font-size: 2.8rem; line-height: 3.6rem; margin-bottom: 50px; text-align: center;
+                @include media-sm { font-size: 3rem; line-height: 3.8rem; }
+                @include media-md { font-size: 3.2rem; line-height: 4rem; }
+                @include media-lg { font-size: 4.2rem; line-height: 5rem; }
+            }
+            // Section subtitle
+            .section-subtitle { font-size: 2rem; line-height: 2.8rem; margin: 20px 0;
+                @include media-sm { font-size: 2.2rem; line-height: 3rem; }
+                @include media-md { font-size: 2.4rem; line-height: 3.2rem; }
+                @include media-lg { font-size: 2.6rem; line-height: 3.4rem; }
+            }
+        }
+
+        .section-divider { margin: 10px 0; padding: 0; border: 0; border-bottom: 1px solid #e4e4e4; display: block; overflow: hidden; }
+    }
+
+    //Footer
+    // footer { position: fixed; bottom: 0; width: 100%; height: 30px; background-color: $color-secondary; color: $color-white;
+    //     @include media-sm { padding: 10px; }
+    //     @include media-md { height: 50px; }
+    //     .footer-wrap {
+    //         .address, .copyright { padding: 5px; font-size: 1.2rem; }
+    //     }
+    // }
+}

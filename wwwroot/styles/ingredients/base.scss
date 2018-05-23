@@ -1,0 +1,60 @@
+// ::-moz-selection { background: lighten($color-primary, 35%); }
+// ::selection { background: lighten($color-primary, 35%); }
+html { height: 100%; @include font-OpenSans(); }
+body { min-width: 300px; min-height: 100%; font-size: 1.4rem; line-height: 1.38; color: $color-typography-primary; background: $color-background-body; }
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 2.0rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.6rem; }
+h5 { font-size: 1.4rem; font-weight: normal; }
+p { font-size: 1.4rem; }
+a { color: $color-typography-primary; font-size: 1.4rem; line-height: normal; text-decoration: none;
+    &:visited { color: $color-typography-primary; }
+    &:active { color: darken($color-typography-primary, 30%); }
+    &:hover { color: darken($color-typography-primary, 20%); }
+}
+pre { @include font-OpenSans(); }
+
+//Useful Classes
+.display-none { display: none; }
+.display-none-imp { display: none !important; }
+.display-block { display: block; }
+.display-block-imp { display: block !important; }
+.no-margin { margin: 0; }
+.no-padding { padding: 0; }
+.text-bold { font-weight: bold; }
+.text-italic { font-style: italic; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.text-danger { color: $color-danger; }
+.text-success { color: $color-success; }
+.text-warning { color: $color-warning; }
+.position-absolute { position: absolute; }
+.position-relative { position: relative; }
+.padding-5 { padding: 5px; }
+.padding-10 { padding: 10px; }
+.height-stretch { height: 100%; }
+.overflow-y { overflow-y: auto; }
+.overflow-x { overflow-x: auto; }
+.overflow-y-hidden { overflow-y: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-hidden { overflow: hidden; }
+.noselect { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.noprint {
+    @include media-print { display: none; }
+}
+
+@include media-xs { }
+
+@include media-sm { }
+
+@include media-md { }
+
+@include media-lg { }
+
+@include media-xl { }
+
+//Resettingg Custom Elements
+router-view, compose, dynamic-view { display: block; }

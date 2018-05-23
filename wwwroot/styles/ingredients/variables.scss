@@ -1,0 +1,137 @@
+
+//Z-Indexes
+$z-index-adorner: 110;
+$z-index-dialog: 105;
+$z-index-header: 100;
+$z-index-sub-header: 95;
+
+//Media Queries Break Points
+$width-xs: 30em; //480px
+$width-sm: 48em; //768px
+$width-md: 64em; //1024px
+$width-lg: 75em; //1200px
+$width-xl: 120em; //1920px
+
+@mixin media-xs {
+  	@media only screen and (min-width: $width-xs) {
+    	@content;
+  	}
+}
+
+@mixin media-sm {
+  	@media only screen and (min-width: $width-sm) {
+    	@content;
+  	}
+}
+
+@mixin media-md {
+	@media only screen and (min-width: $width-md) {
+		@content;
+	}
+}
+
+@mixin media-lg {
+	@media only screen and (min-width: $width-lg) {
+		@content;
+	}
+}
+
+@mixin media-xl {
+	@media only screen and (min-width: $width-xl) {
+		@content;
+	}
+}
+
+//Custom Media Query
+@mixin media-custom($width) {
+	@media only screen and (min-width: $width) {
+		@content;
+	}
+}
+
+//Generic Media Query
+@mixin media($prop, $width) {
+	@media only screen and ($prop: $width) {
+		@content;
+	}
+}
+
+//Print Media Query
+@mixin media-print {
+	@media print {
+		@content;
+	}
+}
+
+//Aspect Ratio - Used mainly for Card layouts to keep the aspect ratio perfect even when resizing
+@mixin aspect-ratio($width, $height) { position: relative;
+	&:before{ display: block; content: " "; width: 100%; padding-top: ($height / $width) * 100%; }
+    > .content { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+}
+
+//Custom Scroll Bar Styling
+@mixin scroll-bar(){
+	&::-webkit-scrollbar { width: 6px; }
+	&::-webkit-scrollbar-track { -webkit-box-shadow: none; background-color: transparent; }//#f1f1f1
+   	&::-webkit-scrollbar-thumb { background-color: #cecece; border-radius: 2.5px; }
+}
+
+// Blur mixin
+@mixin blur-content($blur){
+	-webkit-filter: blur($blur);
+	-moz-filter: blur($blur);
+	-o-filter: blur($blur);
+	-ms-filter: blur($blur);
+	filter: blur($blur);
+}
+
+//User Select
+@mixin user-select($val: none){ 
+	 -webkit-touch-callout: $val;
+	 -webkit-user-select: $val;
+	 -moz-user-select: $val;
+	 -ms-user-select: $val;
+	 user-select: $val;
+}
+
+//Gradient Radial
+@mixin gradient-radial($color1: #fff, $color2: #000, $pos-x: 50%, $pos-y: 50%){
+	background-color: $color1;
+	background: -webkit-gradient(radial, center center, 0, center center, 460, from($color1), to($color2));
+	background: -webkit-radial-gradient(circle, $color1, $color2);
+	background: -moz-radial-gradient(circle, $color1, $color2);
+	background: -ms-radial-gradient(circle, $color1, $color2);
+	background-position: $pos-x, $pos-y;
+}
+
+//Gradient Linear
+@mixin gradient-linear($color1: #fff, $color2: #000, $deg: 180deg){
+	background-color: $color1;
+	background: linear-gradient($deg, $color1, $color2);
+}
+
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+	overflow: hidden;
+	position: relative;
+	line-height: $lineHeight;
+	max-height: $lineHeight * $lineCount;
+	text-align: justify;
+	&:before {
+		content: '...';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+	&:after {
+		content: '...'; position: absolute; right: 0; bottom: 0;
+		background: $bgColor;
+		background: -webit-linear-gradient(to right, rgba($bgColor,0), $bgColor 50%); width: 25px; text-align: right;
+		background: -moz-linear-gradient(to right, rgba($bgColor,0), $bgColor 50%); width: 25px; text-align: right;
+		background: -o-linear-gradient(to right, rgba($bgColor,0), $bgColor 50%); width: 25px; text-align: right;
+		background: linear-gradient(to right, rgba($bgColor,0), $bgColor 50%); width: 25px; text-align: right;
+	}
+}
+
+.block-with-text {
+	@include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
+}

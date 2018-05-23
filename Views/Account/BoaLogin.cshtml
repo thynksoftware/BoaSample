@@ -1,0 +1,131 @@
+﻿@model LoginViewModel
+@inject SignInManager<User> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<!-- Styles -->
+<environment names="Development">
+    <link rel="stylesheet" href="~/styles/core.css" asp-append-version="true" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/styles/core.min.css" asp-append-version="true" />
+</environment>
+
+<div class="page-login column grow-xs-1">
+    <section class="row row-max center-xs middle-xs grow-xs-1 shrink-xs-0">
+        <form id="login-form" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+
+            <!-- Title -->
+            <h2 class="title">@ViewData["Title"]</h2>
+
+            <!-- Validation Summary -->
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button id="login" type="submit" class="button-submit">Log in</button>
+                <div id="loading" class="loading-container">
+                    <div class="loading"></div>
+                </div>
+                <div id="resultMessage" class="text-danger"></div>
+                @{
+                    foreach (var modelState in ViewData.ModelState.Values)
+                    {
+                        foreach (var error in modelState.Errors)
+                        {
+                            <span class="text-danger">@error.ErrorMessage</span>
+                        }
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <p>
+                    <a class="link" asp-action="BoaRegister" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                </p>
+            </div>
+        </form>
+    </section>
+</div>
+
+<environment include="Development">
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</environment>
+<environment exclude="Development">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+            asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator"
+            crossorigin="anonymous"
+            integrity="sha384-Fnqn3nxp3506LP/7Y3j/25BlWeA3PXTyT1l78LjECcPaKCV12TsZP7yyMxOe/G/k">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+            crossorigin="anonymous"
+            integrity="sha384-JrXK+k53HACyavUKOsL+NkmSesD2P+73eDMrbTtTk0h4RmOF8hF8apPlkp26JlyH">
+    </script>
+</environment>
+
+<script type="text/javascript">
+    $("#login-form").submit(function (e) {
+        e.preventDefault();
+        $("#login").hide();
+        $("#loading").css("display", "flex");
+        $("#resultMessage").removeClass("success");
+        $("#resultMessage").removeClass("error");
+        $("#resultMessage").html("");
+
+
+        var data = {
+            email: document.getElementById("Email").value,
+            password: document.getElementById("Password").value
+        };
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/Account/Login",
+            dataType: "json",
+            data: data,
+            success: function (x) {
+                if (x != "OK") {
+                    $.each(x,
+                        function (index, value) {
+                            $("#resultMessage").html(value.errors[0].errorMessage);
+                            $("#resultMessage").addClass("error");
+                        });
+                } else {
+                    $("#resultMessage").addClass("success");
+                    window.parent.postMessage("BOA_REDIRECT", "@Model.BoaUrl");
+                }
+                $("#login").show();
+                $("#loading").hide();
+            },
+            error: function (e) {
+                $("#resultMessage").html("Invalid Login");
+                $("#resultMessage").addClass("error");
+                $("#login").show();
+                $("#loading").hide();
+            }
+        });
+    });
+</script>

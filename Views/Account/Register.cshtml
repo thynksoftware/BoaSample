@@ -1,0 +1,122 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";   
+}
+
+<div class="page-login column grow-xs-1">
+    <section class="row row-max center-xs middle-xs grow-xs-1 shrink-xs-0">
+        <div class="form-group">
+            <h2 class="title">@ViewData["Title"]</h2>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname"></label>
+                <input asp-for="Surname" class="form-control"/>
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control"/>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+                
+            <div class="form-group">
+                <button id="register" type="button" class="button-submit">Register</button>
+                <div id="loading" class="loading-container">
+                    <div class="loading"></div>
+                </div>
+                <div id="resultMessage" class="text-danger"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<environment include="Development">
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</environment>
+<environment exclude="Development">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+            asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator"
+            crossorigin="anonymous"
+            integrity="sha384-Fnqn3nxp3506LP/7Y3j/25BlWeA3PXTyT1l78LjECcPaKCV12TsZP7yyMxOe/G/k">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+            crossorigin="anonymous"
+            integrity="sha384-JrXK+k53HACyavUKOsL+NkmSesD2P+73eDMrbTtTk0h4RmOF8hF8apPlkp26JlyH">
+    </script>
+</environment>
+
+<script type="text/javascript">
+    $("#register").click(function() {
+        $("#register").hide();
+        $("#loading").css("display", "flex");
+        $("#resultMessage").removeClass("success");
+        $("#resultMessage").removeClass("error");
+        $("#resultMessage").html("");
+
+
+        var data = {
+            name: document.getElementById("Name").value,
+            surname: document.getElementById("Surname").value,
+            phoneNumber: document.getElementById("PhoneNumber").value,
+            email: document.getElementById("Email").value,
+            password: document.getElementById("Password").value,
+            confirmPassword: document.getElementById("ConfirmPassword").value
+        };
+        
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/Account/Register",
+            dataType: "json",
+            data: data,
+            success: function(x) {
+                if (x != "OK") {
+                    var errors = "";
+                    $.each(x,
+                        function(index, value) {
+                            errors += value.errors[0].errorMessage;
+                            errors +="<br/>";
+                        });
+                        
+                            $("#resultMessage").html(errors);
+                            $("#resultMessage").addClass("error");
+                } else {
+                    $("#resultMessage").addClass("success");
+                    $("#resultMessage").html("Registered");
+                    window.location.href="/";
+                }
+                $("#register").show();
+                $("#loading").hide();
+            },
+            error: function(e) {
+                $("#resultMessage").html("Invalid Registration");
+                $("#resultMessage").addClass("error");
+                $("#register").show();
+                $("#loading").hide();
+            }
+        });
+    });
+</script>

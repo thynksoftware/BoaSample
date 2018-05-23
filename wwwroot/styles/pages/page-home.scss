@@ -1,0 +1,232 @@
+
+//Home Page
+.page-home { overflow-y: auto;
+
+    //Top
+    #section-home { height: 80vh; min-height: 80vh; @include user-select(); background-color: $color-primary; padding-top: 50px;
+        @include media-sm { padding-top: 90px; }
+        // Animated background
+        .animated-bg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; overflow: hidden;
+            .bg { background-image: linear-gradient(-60deg, rgba(255, 255, 255, 0.05) 50%, rgba(0,0,0,0.05) 50%);
+                  -webkit-animation: sliding-background 3s ease-in-out infinite alternate; animation: sliding-background 3s ease-in-out infinite alternate;
+                  bottom:0; left:-50%; opacity:.5; position:absolute; right:-50%; top:0; z-index:2; }
+            .bg1 { animation-direction:alternate-reverse; animation-duration:4s; }
+            .bg2 { animation-duration: 5s; }
+        }
+        // Section wrapper - Content
+        .section-wrapper { padding: 0; display: flex; flex: 1 1 auto; flex-direction: column; flex-wrap: wrap;
+            @include media-xs { flex-direction: row; }
+            @media only screen and (min-width: 480px) and (max-width: 650px) { flex-direction: column; } // to cater for landscaped mobiles
+            @include media-sm { flex-direction: column; }
+            @include media-md { flex-direction: row; }
+            // Motto
+            .motto { font-size: 3.4rem; line-height: 4.2rem; color: $color-white; z-index: 5; text-align: center; align-self: center; padding: 40px 20px;
+                @include media-sm { font-size: 6rem; line-height: 6.8rem; text-align: left; width: 100%; padding: 40px 40px; }
+                @include media-lg { padding: 0; }
+
+                strong {
+                    @include media-sm { padding-left: 5rem; }
+                    @include media-sm { padding-left: 7rem; }
+                    @include media-sm { padding-left: 9rem; }
+                }
+            }
+            // Devices
+            .devices-container { position: relative;
+                .boa-phone-1 { position: absolute; bottom: 0; right: 20px; height: 100%; z-index: 3; max-height: 100%; 
+                    @include media-xs { padding-top: 20px; }
+                    @include media-sm { right: 40px; padding-top: 0; }
+                    @include media-md { height: 555px; padding-top: 20px; }
+                    @include media-lg { height: 687px; max-height: 100%; }
+                }
+                .boa-phone-2 { position: absolute; right: 140px; bottom: -20px; height: 80%; z-index: 4; max-height: 80%;
+                    @include media-sm { right: 235px; bottom: -40px; }
+                    @include media-md { height: 465px; right: 220px; bottom: -60px; }
+                    @include media-lg { height: 555px; right: 280px; bottom: -80px; max-height: 80%; }
+                }
+            }
+        }
+    }
+
+    //Products
+    #section-products { min-height: 60vh; background-color: $color-secondary; color: $color-primary;
+        .section-wrapper { color: $color-white; z-index: 0;
+
+            &:after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;
+                      background-image: url('/images/logos/logo-boa-background.svg'); background-repeat: no-repeat; background-size: cover;
+                      background-position: center; z-index: -1;
+            }
+
+            .section-title { color: $color-primary; }
+
+            // Product Container
+            .product-container { width: 100%;
+
+                // Product
+                .product { padding: 0 20px 50px;
+                    @include media-sm { padding: 20px; }
+
+                    .product-img { width: 100%; padding: 20px; }
+
+                    .product-txt { position: relative; z-index: 0; padding: 50px 60px 50px 30px;
+                        @include media-xs { padding: 50px 80px 50px 50px }
+                        @include media-sm { padding: 50px 50px 50px 10px; }
+                        @include media-sm { padding: 50px 50px 50px 20px; }
+                        @include media-lg { padding: 50px 90px 50px 40px; }
+                        &:before { content: ''; background-color: $color-background-product; transform: skew(-6deg) scaleX(0.86);
+                                width: 100%; height: 100%; position: absolute; top: 0; left: -15px; z-index: -1;
+                            @include media-sm { transform: skew(-6deg) scaleX(0.86); }
+                            @include media-md { transform: skew(-8deg) scaleX(0.86); }
+                            @include media-lg { transform: skew(-10deg) scaleX(0.86); left: -25px; }
+                        }
+                        &:after { content: ''; background-color: rgba($color-background-product, 0.7); margin-left: -3.7rem; transform: skew(-6deg) scaleX(0.8) rotate(3deg);
+                                width: 100%; height: 100%; position: absolute; top: 10px; left: 15px; z-index: -1;
+                            @include media-sm { transform: skew(-6deg) scaleX(0.8); }
+                            @include media-md { transform: skew(-8deg) scaleX(0.8); }
+                            @include media-lg { transform: skew(-10deg) scaleX(0.8); left: 0; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //Bottom
+    #section-usps { min-height: 80vh; background-color: $color-primary; color: $color-secondary;
+        .section-wrapper {
+
+            // USP Content
+            .usp-content { width: 100%; 
+                .usp-item { padding: 20px; text-align: center;
+                    .usp-icon { height: 80px; align-self: center; margin-bottom: 20px; }
+                    .ups-middle-img { align-self: center; max-width: 100%; flex-shrink: 0; }
+                    .usp-txt { max-width: 240px; margin: 0 auto; }
+                }
+            }
+        }
+    }
+    
+    //Bottom
+    #section-technology { min-height: 80vh; background-color: $color-white; color: $color-secondary;
+        .section-wrapper {
+
+            //Techs
+            .techs {
+                .tech { display: flex; flex-direction: column; flex-wrap: nowrap; align-items: center; margin-bottom: 30px;
+                    @include media-sm { flex-direction: row; }
+                    .logo { width: 180px; 
+                        @include media-md { width: 100px; }
+                        @include media-lg { width: 150px; }
+                    }
+                    .label { padding: 20px 0 5px; font-weight: 600; font-size: 1.8rem; text-align: center;
+                        @include media-sm { padding-left: 20px; text-align: left; }
+                        @include media-lg { padding-left: 40px; }
+                    }
+                    .item { text-align: center; 
+                        @include media-sm { padding-left: 20px; text-align: left; }
+                        @include media-lg { padding-left: 40px; }
+                    }
+                }
+            }
+            
+            //Graphic
+            .graphic { height: 200px; margin-top: 20px;
+                @include media-xs { height: 320px; }
+                @include media-sm { height: 500px; }
+                @include media-md { height: 320px; }
+                @include media-lg { height: 420px; }
+            }
+        }
+    }
+    
+    //Bottom
+    #section-partners { min-height: 60vh; background-color: $color-background-section-gray;
+        .section-wrapper {
+            .section-content { padding-top: 20px; max-width: 100%; width: 100%; 
+                @include media-sm { padding-top: 50px; }
+                @include media-md { padding-top: 70px; }
+                @include media-md { padding-top: 100px; }
+                .partner {
+                    @include media-sm { padding: 0 20px; }
+                    @include media-md { padding: 0 30px; }
+                    @include media-lg { padding: 0 50px; }
+                    .logo-opta, .logo-runningball { height: 80px; margin-bottom: 20px;
+                        @include media-sm { height: 100px; }
+                        @include media-md { height: 120px; }
+                        @include media-lg { height: 150px; }                    }
+                }
+            }
+        }
+        .section-footer { background: $color-white; margin-top: 50px; padding: 20px 0; width: 100%; align-items: center; border-top: 1px solid $color-border;
+                          display: flex; flex-direction: row; align-content: center; align-self: flex-end; justify-content: center;
+            .sport { margin: 5px 10px;
+                @include media-lg { margin: 5px 40px; }
+                .sport-logo { height: 40px;
+                    @include media-sm { height: 45px; }
+                    @include media-md { height: 50px; }
+                    @include media-lg { height: 60px; }
+                }
+                .sport-name { display: none;
+                    @include media-sm { display: block;; }
+                }
+            }
+        }
+    }
+    
+    //Bottom
+    #section-integration { min-height: 60vh; background-color: $color-secondary; color: $color-primary;
+        .section-wrapper {
+            .section-content { width: 100%;
+                .integration { padding: 50px 50px; display: flex; flex-direction: column; align-items: center; color: $color-white; position: relative;
+                    @include media-sm { padding: 50px 100px; }
+                    .section-subtitle { font-weight: bold; margin-bottom: 50px; }
+                    .integration-txt { max-width: 240px; font-size: 1.8rem; color: $color-white; }
+                    &:nth-child(2) {
+                        &:before { content: ''; position: absolute; top: 0; left: 0; background-color: rgba($color-white, 0.2); width: 1px; height: 100%; display: none;
+                            @include media-sm { display: initial; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //Bottom
+    #section-contact { min-height: 80vh; background-color: $color-primary;
+        .section-wrapper {
+
+            .section-subtitle { width: 100%; padding: 0 10px 50px; text-align: center; }
+            // Map
+            #contact-map { width: 100%; height: 420px; border-radius: 5px; padding-bottom: 8px; align-self: flex-start; }
+
+            //Form
+            #contact-form { margin-top: 20px;
+                @include media-sm { margin-top: 10px; }
+                @include media-md { margin-top: 0; padding-left: 10px; }
+                .field { height: 50px; margin-bottom: 10px; padding: 0 20px; border-radius: 5px; border: 1px solid #e0e0e0; background-color: #fbfbfb; outline: none;
+                    &.message { resize: none; padding-top: 15px; height: 180px; }
+                    &:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px $color-white inset; }
+                    &::-webkit-input-placeholder { color: $color-field-placeholder-foreground; }
+                    &:-ms-input-placeholder { color: $color-field-placeholder-foreground; }
+                    &::input-placeholder { color: $color-field-placeholder-foreground; }
+                    &:-webkit-outer-spin-button,
+                    &:-webkit-inner-spin-button { -webkit-appearance: none; }
+                }
+                .button-wrap {
+                    &:nth-of-type(1) { padding-right: 5px; }
+                    &:nth-of-type(2) { padding-left: 5px; }
+
+                    .contact-button { width: 100%; height: 50px; padding: 0 30px; font-weight: 600; outline: none; border: none;
+                        &.contact-clear { color: $color-secondary; background-color: $color-white; }
+                        &.contact-send { color: $color-white; background-color: $color-secondary; }
+                    }
+                }
+
+                
+                
+                .validation-alert { padding-top: 8px; color: $color-danger; }
+                .info { padding-top: 8px; color: $color-success; }
+            }
+            
+        }
+    }
+}
